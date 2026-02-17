@@ -1,0 +1,32 @@
+[
+  {
+    "id": "f2421ff3-dfa9-44e1-8a73-f56c1aa0f4c2",
+    "nome": "Samuele",
+    "domanda": "Domanda",
+    "data": "2026-02-17T10:17:03.604Z"
+  },
+  {
+    "id": "0f8bde78-868f-4e0d-a0a3-ab4eb7815e00",
+    "nome": "Nicola",
+    "domanda": "Altra domanda",
+    "data": "2026-02-17T10:26:09.701Z"
+  },
+  {
+    "id": "18f888a7-216b-4228-9a4d-d41d2ab7f487",
+    "nome": "Davide",
+    "domanda": "Ancora un'altra domanda",
+    "data": "2026-02-17T10:26:23.565Z"
+  },
+  {
+    "id": "7e7f3186-e88c-4951-8a84-d1b3a8a81a4e",
+    "nome": "Kevin",
+    "domanda": "Incredibile, ma questa è un'altra domanda ancora",
+    "data": "2026-02-17T10:49:00.050Z"
+  },
+  {
+    "id": "b9baac3b-3965-4f39-8f9f-cead120f5e38",
+    "nome": "Francesca",
+    "domanda": "Lo so lo so, potrebbe sembrare effettivamente molto strano, ma si, questa è ancora un'altra domanda",
+    "data": "2026-02-17T10:50:25.398Z"
+  }
+]
