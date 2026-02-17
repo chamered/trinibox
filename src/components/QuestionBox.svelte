@@ -1,4 +1,5 @@
 <script>
+    import Icon from "@iconify/svelte";
     import { enhance } from "$app/forms";
 
     let { form } = $props();
@@ -21,7 +22,10 @@
 
 <div class="card border-orange shadow mx-3" style="width: 450px;">
     <div class="card-header border-orange">
-        <h2 class="card-title d-flex justify-content-center m-0">TriniBox</h2>
+        <h2 class="card-title fw-bold d-flex justify-content-center align-items-center gap-1 m-0">
+            <Icon icon="bxs:box" width="32" height="32" />
+            TriniBox
+        </h2>
     </div>
     <div class="card-body">
         <p class="card-text text-secondary mb-3">
@@ -32,7 +36,7 @@
         </p>
         <form class:was-validated={validate} method="POST" use:enhance={handleSubmit} novalidate>
             <div>
-                <label for="nome">Nome <em class="text-secondary"><small>- Optional</small></em></label>
+                <label for="nome">Nome <em class="text-secondary"><small>- Opzionale</small></em></label>
                 <input type="text" name="nome" class="form-control" placeholder="Inserisci il tuo nome">
             </div>
             <div class="my-3">
