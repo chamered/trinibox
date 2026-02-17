@@ -6,13 +6,13 @@ export const actions = {
         const nome = formData.get('nome');
         const domanda = formData.get('domanda');
 
-        if (!nome || !domanda) return { success: false, message: 'Compila tutti i campi!' };
+        if (!domanda) return { success: false, message: 'Compila tutti i campi!' };
 
         try {
             const { error } = await supabase
                 .from('domande')
                 .insert([
-                    { nome: nome, domanda: domanda }
+                    { nome: nome && nome.trim() !== '' ? nome : 'Anonimo', domanda: domanda }
                 ]);
             
             if (error) throw error; 

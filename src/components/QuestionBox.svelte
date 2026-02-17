@@ -2,7 +2,23 @@
     import { enhance } from "$app/forms";
 
     let { form } = $props();
+
+    let validate = $state(false);
+    const handleSubmit = ({ cancel, formElement }) => {
+        validate = true;
+
+        if (!formElement.checkValidity()) {
+            cancel();
+            return;
+        }
+
+        return async ({ update }) => {
+            await update();
+            validate = false;
+        }
+    };
 </script>
+
 <div class="card border-orange shadow mx-3" style="width: 450px;">
     <div class="card-header border-orange">
         <h2 class="card-title d-flex justify-content-center m-0">TriniBox</h2>
@@ -14,14 +30,17 @@
                 Fai una domanda e ti risponderemo nel podcast!
             </small>
         </p>
-        <form method="POST" use:enhance>
+        <form class:was-validated={validate} method="POST" use:enhance={handleSubmit} novalidate>
             <div>
-                <label for="nome">Nome</label>
-                <input type="text" name="nome" class="form-control" placeholder="Inserisci il tuo nome" required>
+                <label for="nome">Nome <em class="text-secondary"><small>- Optional</small></em></label>
+                <input type="text" name="nome" class="form-control" placeholder="Inserisci il tuo nome">
             </div>
             <div class="my-3">
                 <label for="domanda">Domanda</label>
                 <textarea name="domanda" class="form-control" rows="3" placeholder="Scrivi qui la tua domanda..." required></textarea>
+                <div class="invalid-feedback">
+                    Per favore scrivi una domanda.
+                </div>
             </div>
             <button type="submit" class="btn btn-orange w-100">Invia Domanda</button>
         </form>
