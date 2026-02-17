@@ -1,16 +1,18 @@
-import fs from 'node:fs/promises';
-import path from 'node:path';
-
-const DB_PATH = path.resolve('db.json');
+import { supabase } from '$lib/supabaseClient';
 
 export const load = async () => {
-    try {
-        const fileData = await fs.readFile(DB_PATH, 'utf-8');
-        const domande = JSON.parse(fileData);
+    
+    const { data, error } = await supabase
+        .from('domande')
+        .select('*')
+        .order('created_at', { ascending: false });
 
-        return { domande: domande.reverse() };
-    } catch (error) {
-        console.error('Errore lettura DB:', error);
+    if (error) {
+        console.error("Errore caricamento:", error);
         return { domande: [] };
     }
+
+    return {
+        domande: data ?? []
+    };
 };

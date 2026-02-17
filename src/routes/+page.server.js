@@ -1,7 +1,4 @@
-import fs from 'node:fs/promises';
-import path from 'node:path';
-
-const DB_PATH = path.resolve('db.json');
+import { supabase } from '$lib/supabaseClient.js';
 
 export const actions = {
     default: async ({ request }) => {
@@ -12,18 +9,13 @@ export const actions = {
         if (!nome || !domanda) return { success: false, message: 'Compila tutti i campi!' };
 
         try {
-            const fileData = await fs.readFile(DB_PATH, 'utf-8');
-            const domande = JSON.parse(fileData);
-            const nuovaDomanda = {
-                id: crypto.randomUUID(),
-                nome,
-                domanda,
-                data: new Date().toISOString()
-            };
-
-            domande.push(nuovaDomanda);
-
-            await fs.writeFile(DB_PATH, JSON.stringify(domande, null, 2));
+            const { error } = await supabase
+                .from('domande')
+                .insert([
+                    { nome: nome, domanda: domanda }
+                ]);
+            
+            if (error) throw error; 
 
             return { success: true, message: 'Domanda salvata!' };
         } catch (error) {
