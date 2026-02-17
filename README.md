@@ -67,4 +67,4 @@ Open your browser and navigate to: `http://localhost:5173`.
 Contributions are welcome! If you have suggestions for the website or want to improve the UI for the TriniTalk listeners, feel free to open an issue or submit a pull request.
 
 ## 📝 License
-This project is open source and available under the MIT License.
+This project is open source and available under the [MIT License](LICENSE).
