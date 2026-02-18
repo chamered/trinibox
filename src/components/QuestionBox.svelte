@@ -36,7 +36,7 @@
         </p>
         <form class:was-validated={validate} method="POST" use:enhance={handleSubmit} novalidate>
             <div>
-                <label for="nome">Nome <em class="text-secondary"><small>- Opzionale</small></em></label>
+                <label for="nome">Nome <small class="text-secondary fst-italic">- Opzionale</small></label>
                 <input type="text" name="nome" class="form-control" placeholder="Inserisci il tuo nome">
             </div>
             <div class="my-3">
@@ -47,6 +47,7 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-orange w-100">Invia Domanda</button>
+            <a href="/domande" class="fst-italic"><small>Visualizza tutte le domande.</small></a>
         </form>
     </div>
 </div>
