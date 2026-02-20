@@ -6,7 +6,7 @@ body::before {
     width: 100%;
     height: 100%;
 
-    background-image: url('/trinitalk-logo.png');
+    background-image: url('./lib/assets/trinitalk-logo.png');
     background-size: 80px;
     background-repeat: repeat;
     opacity: 0.05;
