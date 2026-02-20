@@ -1,5 +1,5 @@
 <script>
-	import favicon from '$lib/assets/favicon.svg';
+	//import favicon from '$lib/assets/favicon.png';
 	import 'bootstrap/dist/css/bootstrap.min.css';
 	import { onMount } from 'svelte';
 	import '../app.css';
@@ -11,8 +11,8 @@
 	let { children } = $props();
 </script>
 
-<svelte:head>
+<!-- <svelte:head>
 	<link rel="icon" href={favicon} />
-</svelte:head>
+</svelte:head> -->
 
 {@render children()}
