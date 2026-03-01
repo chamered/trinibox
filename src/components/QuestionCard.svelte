@@ -1,4 +1,6 @@
 <script>
+    import ProfileIcon from "./ProfileIcon.svelte";
+
     let { item } = $props();
 
     function displayDate(date) {
@@ -20,10 +22,15 @@
     }
 </script>
 
-<div class="card shadow border-orange border-3 h-100">
+<div class="card text-bg-dark shadow-lg h-100">
     <div class="card-body">
-        <h5 class="card-title m-0">{item.nome}</h5>
-        <p class="text-secondary mb-2"><small>{displayDate(new Date(item.created_at).toLocaleDateString())}</small></p>
-        <p class="card-text">{item.domanda}</p>
+        <div class="d-flex align-items-center gap-2 mb-2">
+            <ProfileIcon name={item.nome}/>
+            <div class="d-flex flex-column">
+                <h6 class="card-title m-0">{item.nome}</h6>
+                <small class="text-secondary">{displayDate(new Date(item.created_at).toLocaleDateString())}</small>
+            </div>
+        </div>
+        <p class="card-text fw-light">{item.domanda}</p>
     </div>
 </div>

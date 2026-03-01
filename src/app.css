@@ -31,25 +31,77 @@ body {
     background-color: #370717;
 }
 
-.btn-orange {
-    background-color: #faa307;
-    border-color: #faa307;
-    color: white;  
-}
-
-.btn-orange:hover {
-    background-color: #d98f06;
-    border-color: #d98f06;
+.btn-custom {
     color: white;
+    background: #ED4503;
+    background: radial-gradient(circle, rgba(237, 69, 3, 1) 0%, rgba(215, 20, 3, 1) 100%);
 }
 
-.btn-orange:active, .btn-orange:focus {
-    background-color: #cb8607 !important;
-    border-color: #cb8607 !important;
-    color: white !important;
+.btn-custom:hover {
+    color: white;
+    background: #c63a03;
+    background: radial-gradient(circle, rgba(198, 58, 3, 1) 0%, rgb(168, 17, 3) 100%);
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 
-.border-orange {
-    border-color: #faa307;
+.btn-custom:active, .btn-custom:focus {
+    color: white !important;
+    background: #c63a03 !important;
+    background: radial-gradient(circle, rgba(198, 58, 3, 1) 0%, rgb(168, 17, 3) 100%) !important;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.border-custom {
+    border-color: #621322; /* Alternativa: #7f182c */
+}
+
+.border-custom-2 {
+    border-bottom: 3px solid #ED4503;
+    border-image-source: linear-gradient(90deg, rgba(237, 69, 3, 1) 0%, rgba(254, 218, 49, 1) 50%, rgba(215, 20, 3, 1) 100%);
+    border-image-slice: 1;
+}
+
+.border-custom-3 {
+    border-color: rgb(237, 69, 3);
+}
+
+.bg-custom {
+    background: #A1140C;
+    background: radial-gradient(circle, rgba(161, 20, 12, 1) 0%, rgba(49, 7, 21, 1) 90%);
+}
+
+.bg-custom-2 {
+    background-color: #370717;
+}
+
+.input {
+    color: white;
+    background-color: #370717;
+    border: 2px solid #621322;
+    transition: all 0.3 ease;
+}
+
+.input::placeholder {
+    color: white;
+    opacity: 0.5;
+}
+
+.input:hover {
+    border-color: #A1140C;
+}
+
+.input:focus {
+    color: white;
+    background-color: #370717;
+    border-color: #A1140C;
+    box-shadow: 0 0 0 4px rgba(161, 20, 12, 0.5);
+}
+
+.text-custom {
+    background-image: linear-gradient(90deg, rgba(215, 20, 3, 1) 0%, rgba(237, 69, 3, 1) 40%, rgba(254, 218, 49, 1) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
 }

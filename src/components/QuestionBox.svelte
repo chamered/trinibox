@@ -20,34 +20,31 @@
     };
 </script>
 
-<div class="card border-orange border-5 shadow mx-3" style="width: 450px;">
-    <div class="card-header border-orange border-5">
-        <h2 class="card-title fw-bold d-flex justify-content-center align-items-center gap-1 m-0">
-            <Icon icon="bxs:box" width="32" height="32" />
-            TriniBox
+<div class="card border-custom bg-custom border-2 shadow-lg mx-3" style="width: 450px;">
+    <div class="card-header border-custom-2 border-4">
+        <h2 class="card-title text-white d-flex justify-content-center m-0">
+            Trini<span class="text-custom">Box</span>
         </h2>
     </div>
-    <div class="card-body">
-        <p class="card-text text-secondary mb-3">
-            <small>
-                Hai dubbi o curiosità sulla religione cattolica?
-                Fai una domanda e ti risponderemo nel podcast!
-            </small>
+    <div class="card-body text-white">
+        <p class="card-text text-center fw-light mb-3">
+            Hai dubbi o curiosità sulla religione cattolica?
+            Fai una domanda e ti risponderemo nel podcast!
         </p>
         <form class:was-validated={validate} method="POST" use:enhance={handleSubmit} novalidate>
             <div>
-                <label for="nome">Nome <small class="text-secondary fst-italic">- Opzionale</small></label>
-                <input type="text" name="nome" class="form-control" placeholder="Inserisci il tuo nome">
+                <label for="nome" class="mb-1">Nome <small class="fw-lighter fst-italic"> (Opzionale)</small></label>
+                <input type="text" name="nome" class="form-control input" placeholder="Inserisci il tuo nome">
             </div>
             <div class="my-3">
-                <label for="domanda">Domanda</label>
-                <textarea name="domanda" class="form-control" rows="3" placeholder="Scrivi qui la tua domanda..." required></textarea>
+                <label for="domanda" class="mb-1">Domanda</label>
+                <textarea name="domanda" class="form-control input" rows="3" placeholder="Scrivi qui la tua domanda..." required></textarea>
                 <div class="invalid-feedback">
-                    Per favore scrivi una domanda.
+                    Bro, la domanda...
                 </div>
             </div>
-            <button type="submit" class="btn btn-orange w-100">Invia Domanda</button>
-            <a href="/domande" class="fst-italic"><small>Visualizza tutte le domande.</small></a>
+            <button type="submit" class="btn btn-custom w-100 mb-2">Invia Domanda</button>
+            <a href="/domande" class="btn btn-outline-light w-100">Visualizza Tutte le Domande</a>
         </form>
     </div>
 </div>

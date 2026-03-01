@@ -13,7 +13,7 @@
     
     <div class="row mt-4 g-3 h-100">
         {#each data.domande as item}
-            <div class="col-12 col-md-6 col-lg-4">
+            <div class="col-12">
                 <QuestionCard item={item}/>
             </div>
         {/each}
