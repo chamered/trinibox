@@ -1,3 +1,27 @@
+/* ==========================================================================
+   1. GLOBAL SETTINGS (BASE)
+   ========================================================================== */
+
+/* Main website background */
+body {
+    background-color: #370717;
+}
+
+/* ==========================================================================
+   2. ANIMATED BACKGROUND (LOGO PATTERN)
+   ========================================================================== */
+
+/* Animation definition (Left -> Right) */
+@keyframes move-bg {
+    0% {
+        background-position: 0 0;
+    } 
+    100% {
+        background-position: 100px 0;
+    }
+}
+
+/* "Ghost" layer for the background logo pattern */
 body::before {
     content: "";
     position: fixed;
@@ -6,65 +30,85 @@ body::before {
     width: 100%;
     height: 100%;
 
+    /* Image and layout */
     background-image: url('./lib/assets/trinitalk-logo.png');
     background-size: 80px;
     background-repeat: repeat;
+    
+    /* Aesthetics: Transparency, positioning, and tilt */
     opacity: 0.05;
     z-index: -1;
     transform: rotate(-5deg) scale(1.2);
 
+    /* Animation created above */
     animation: move-bg 15s ease-in-out infinite alternate;
 }
 
-@keyframes move-bg {
-    0%
-    {
-        background-position: 0 0;
-    } 
-    100%
-    {
-        background-position: 100px 0;
-    }
-}
+/* ==========================================================================
+   3. COMPONENTS: FORM INPUTS
+   ========================================================================== */
 
-body {
+/* Base input style */
+.input {
+    color: white;
     background-color: #370717;
+    border: 2px solid #621322;
+    transition: all 0.3s ease;
 }
 
+/* Placeholder text inside the empty input */
+.input::placeholder {
+    color: white;
+    opacity: 0.5;
+}
+
+/* Hover: When hovering with the mouse */
+.input:hover {
+    border-color: #A1140C;
+}
+
+/* Focus: When clicked inside to type */
+.input:focus {
+    color: white;
+    background-color: #370717;
+    border-color: #A1140C;
+    outline: none; /* Removes the default browser blue border */
+    box-shadow: 0 0 0 4px rgba(161, 20, 12, 0.5); /* Glowing halo effect */
+}
+
+/* ==========================================================================
+   4. COMPONENTS: BUTTONS
+   ========================================================================== */
+
+/* Base style for the orange/red button */
 .btn-custom {
     color: white;
-    background: #ED4503;
+    background: #ED4503; /* Solid color fallback */
     background: radial-gradient(circle, rgba(237, 69, 3, 1) 0%, rgba(215, 20, 3, 1) 100%);
 }
 
+/* Button hover */
 .btn-custom:hover {
     color: white;
     background: #c63a03;
     background: radial-gradient(circle, rgba(198, 58, 3, 1) 0%, rgb(168, 17, 3) 100%);
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); /* Inner shadow to give depth */
 }
 
-.btn-custom:active, .btn-custom:focus {
+/* Button active and focus states */
+.btn-custom:active, 
+.btn-custom:focus {
     color: white !important;
     background: #c63a03 !important;
     background: radial-gradient(circle, rgba(198, 58, 3, 1) 0%, rgb(168, 17, 3) 100%) !important;
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 
-.border-custom {
-    border-color: #621322; /* Alternativa: #7f182c */
-}
+/* ==========================================================================
+   5. UTILITY CLASSES (BACKGROUNDS, BORDERS, AND TYPOGRAPHY)
+   ========================================================================== */
 
-.border-custom-2 {
-    border-bottom: 3px solid #ED4503;
-    border-image-source: linear-gradient(90deg, rgba(237, 69, 3, 1) 0%, rgba(254, 218, 49, 1) 50%, rgba(215, 20, 3, 1) 100%);
-    border-image-slice: 1;
-}
-
-.border-custom-3 {
-    border-color: rgb(237, 69, 3);
-}
-
+/* --- BACKGROUNDS --- */
 .bg-custom {
     background: #A1140C;
     background: radial-gradient(circle, rgba(161, 20, 12, 1) 0%, rgba(49, 7, 21, 1) 90%);
@@ -74,29 +118,23 @@ body {
     background-color: #370717;
 }
 
-.input {
-    color: white;
-    background-color: #370717;
-    border: 2px solid #621322;
-    transition: all 0.3 ease;
+/* --- BORDERS --- */
+.border-custom {
+    border-color: #621322; /* Alternative: #7f182c */
 }
 
-.input::placeholder {
-    color: white;
-    opacity: 0.5;
+.border-custom-2 {
+    border-bottom: 3px solid #ED4503; /* The solid fallback is needed for the gradient to work */
+    border-image-source: linear-gradient(90deg, rgba(237, 69, 3, 1) 0%, rgba(254, 218, 49, 1) 50%, rgba(215, 20, 3, 1) 100%);
+    border-image-slice: 1;
 }
 
-.input:hover {
-    border-color: #A1140C;
+.border-custom-3 {
+    border-color: rgb(237, 69, 3);
 }
 
-.input:focus {
-    color: white;
-    background-color: #370717;
-    border-color: #A1140C;
-    box-shadow: 0 0 0 4px rgba(161, 20, 12, 0.5);
-}
-
+/* --- TYPOGRAPHY --- */
+/* Text effect with gradient mask */
 .text-custom {
     background-image: linear-gradient(90deg, rgba(215, 20, 3, 1) 0%, rgba(237, 69, 3, 1) 40%, rgba(254, 218, 49, 1) 100%);
     background-clip: text;
