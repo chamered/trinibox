@@ -3,32 +3,36 @@
 
     let { item } = $props();
 
-    function displayDate(date) {
-        const TODAY = new Date().getDate();
-        const MONTH = new Date().getMonth()
+    function formatDate(date) {
+        const creationDate = new Date(date)
+        const today = new Date()
+        const secondsPassed = Math.floor((today - creationDate) / 1000);
         
-        if (MONTH != date.slice(3, 5) - 1) return date;
+        const minutes = Math.floor(secondsPassed / 60);
+        const hours = Math.floor(minutes / 60);
+        const days = Math.floor(hours / 24);
 
-        const DIFFERENCE = TODAY - date.slice(0, 2);
-        if (DIFFERENCE >= 7 && DIFFERENCE < 14) {
-            return "Una settimana fa";
-        } else if (DIFFERENCE == 0) {
-            return "Oggi"
-        } else if (DIFFERENCE < 7) {
-            return DIFFERENCE + " giorni fa";
+        if (secondsPassed < 60) {
+            return "Pochi secondi fa";
+        } else if (minutes < 60) {
+            return `${minutes} minut${minutes === 1 ? 'o' : 'i'} fa`;
+        } else if (hours < 24) {
+            return `${hours} or${hours === 1 ? 'a' : 'e'} fa`;
+        } else if (days < 7) {
+            return `${days} giorn${days === 1 ? 'o' : 'i'} fa`;
         } else {
-            return date;
+            return creationDate.toLocaleDateString('it-IT');
         }
     }
 </script>
 
-<div class="card text-bg-dark shadow-lg h-100">
+<div class="card text-bg-dark border-custom shadow-lg h-100">
     <div class="card-body">
         <div class="d-flex align-items-center gap-2 mb-2">
             <ProfileIcon name={item.nome}/>
             <div class="d-flex flex-column">
                 <h6 class="card-title m-0">{item.nome}</h6>
-                <small class="text-secondary">{displayDate(new Date(item.created_at).toLocaleDateString())}</small>
+                <small class="text-secondary">{formatDate(item.created_at)}</small>
             </div>
         </div>
         <p class="card-text fw-light">{item.domanda}</p>
