@@ -12,7 +12,7 @@ export const actions = {
             const { error } = await supabase
                 .from('domande')
                 .insert([
-                    { nome: nome && nome.trim() !== '' ? nome : 'Anonimo', domanda: domanda }
+                    { nome: nome && nome.trim() !== '' ? capitalizeFirstChar(nome) : 'Anonimo', domanda: domanda }
                 ]);
             
             if (error) throw error; 
@@ -23,4 +23,9 @@ export const actions = {
             return { success: false, message: 'Errore nel salvataggio.' };
         }
     }
+}
+
+function capitalizeFirstChar(string) {
+    const firstChar = string.charAt(0).toUpperCase();
+    return firstChar + string.slice(1);
 }
