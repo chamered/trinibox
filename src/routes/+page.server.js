@@ -26,6 +26,13 @@ export const actions = {
 }
 
 function capitalizeFirstChar(string) {
-    const firstChar = string.charAt(0).toUpperCase();
-    return firstChar + string.slice(1);
+    const STRINGS = string.split(" ");
+    let result = "";
+
+    STRINGS.forEach(element => {
+        const firstChar = element.charAt(0).toUpperCase();
+        result += firstChar + element.slice(1) + " ";
+    });
+
+    return result;
 }
