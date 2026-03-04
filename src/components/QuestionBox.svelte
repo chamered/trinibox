@@ -29,22 +29,22 @@
     <div class="card-body text-white">
         <p class="card-text text-center fw-light mb-3">
             Hai dubbi o curiosità sulla religione cattolica?
-            Fai una domanda e ti risponderemo nel podcast!
+            Fai una question e ti risponderemo nel podcast!
         </p>
         <form class:was-validated={validate} method="POST" use:enhance={handleSubmit} novalidate>
             <div>
-                <label for="nome" class="mb-1">Nome <small class="fw-lighter fst-italic"> (Opzionale)</small></label>
-                <input type="text" name="nome" class="form-control input" placeholder="Inserisci il tuo nome">
+                <label for="name" class="mb-1">Nome <small class="fw-lighter fst-italic"> (Opzionale)</small></label>
+                <input type="text" name="name" class="form-control input" placeholder="Inserisci il tuo nome">
             </div>
             <div class="my-3">
-                <label for="domanda" class="mb-1">Domanda</label>
-                <textarea name="domanda" class="form-control input" rows="3" placeholder="Scrivi qui la tua domanda..." required></textarea>
+                <label for="question" class="mb-1">Domanda</label>
+                <textarea name="question" class="form-control input" rows="3" placeholder="Scrivi qui la tua domanda..." required></textarea>
                 <div class="invalid-feedback">
                     Bro, la domanda...
                 </div>
             </div>
             <button type="submit" class="btn btn-custom w-100 mb-2">Invia Domanda</button>
-            <a href="/domande" class="btn btn-outline-light w-100">Visualizza Tutte le Domande</a>
+            <a href="/questions" class="btn btn-outline-light w-100">Visualizza Tutte le Domande</a>
         </form>
     </div>
 </div>

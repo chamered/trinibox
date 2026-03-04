@@ -3,21 +3,21 @@ import { supabase } from '$lib/supabaseClient.js';
 export const actions = {
     default: async ({ request }) => {
         const formData = await request.formData();
-        const nome = formData.get('nome');
-        const domanda = formData.get('domanda');
+        const name = formData.get('name');
+        const question = formData.get('question');
 
-        if (!domanda) return { success: false, message: 'Compila tutti i campi!' };
+        if (!question) return { success: false, message: 'Compila tutti i campi!' };
 
         try {
             const { error } = await supabase
-                .from('domande')
+                .from('questions')
                 .insert([
-                    { nome: nome && nome.trim() !== '' ? capitalizeFirstChar(nome) : 'Utente Anonimo', domanda: domanda }
+                    { name: name && name.trim() !== '' ? capitalizeFirstChar(name) : 'Utente Anonimo', question: question }
                 ]);
             
             if (error) throw error; 
 
-            return { success: true, message: 'Domanda salvata!' };
+            return { success: true, message: 'question salvata!' };
         } catch (error) {
             console.error(error);
             return { success: false, message: 'Errore nel salvataggio.' };

@@ -13,7 +13,7 @@ Currently, the core feature of the site is the **TriniBox**, a dedicated space w
 ## ✨ Current Features (TriniBox)
 
 - **Simple Submission Interface:** A clean, user-friendly form to submit questions for the podcast.
-- **Anonymous by Default:** If the user doesn't provide a name, it defaults to "Anonimo" to protect privacy.
+- **Anonymous by Default:** If the user doesn't provide a name, it defaults to "Utente Anonimo" to protect privacy.
 - **Real-time Storage:** Questions are instantly saved to a **Supabase** (PostgreSQL) database.
 - **Public Feed:** A dedicated page to view all previously asked questions from the community.
 - **Modern Tech:** Built with the latest **Svelte 5 (Runes)** syntax and **SvelteKit**.
@@ -22,9 +22,10 @@ Currently, the core feature of the site is the **TriniBox**, a dedicated space w
 ## 🗺️ Roadmap (Coming Soon)
 
 As the official website for the podcast, the platform will be expanded with the following features:
+- 👤 **Accounts:** Users will be able to create accounts to save their questions and vote other questions.
 - 🎧 **Episodes Archive:** A dedicated section to listen to past episodes directly on the site.
 - 📝 **Show Notes & Resources:** Detailed notes, links, and Catholic resources mentioned during the episodes.
-- 👤 **Hosts Info:** A page dedicated to the creators behind TriniTalk.
+- 👥 **Hosts Info:** A page dedicated to the creators behind TriniTalk.
 - 📱 **Enhanced UI/UX:** Continuous improvements to the design and accessibility.
 
 ## 🛠️ Tech Stack
@@ -59,14 +60,14 @@ PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 ### 4. Database Setup (Supabase)
-Create a table named `domande` in your Supabase project with the following columns:
+Create a table named `questions` in your Supabase project with the following columns:
 
 | Column Name  | Type         | Description                              |
 | ------------ | ------------ | ---------------------------------------- |
 | `id`         | `int8`       | Primary Key (Identity)                   |
 | `created_at` | `timestamptz`| Default: `now()`                         |
-| `nome`       | `text`       | The user's name ("Anonimo" as default)   |
-| `domanda`    | `text`       | The question content                     |
+| `name`       | `text`       | The user's name ("Utente Anonimo" as default)   |
+| `question`    | `text`       | The question content                     |
 
 ### 5. Run the development server
 ```bash

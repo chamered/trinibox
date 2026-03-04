@@ -29,12 +29,12 @@
 <div class="card text-bg-dark border-custom shadow-lg h-100">
     <div class="card-body">
         <div class="d-flex align-items-center gap-2 mb-2">
-            <ProfileIcon name={item.nome}/>
+            <ProfileIcon name={item.name}/>
             <div class="d-flex flex-column">
-                <h6 class="card-title m-0">{item.nome}</h6>
+                <h6 class="card-title m-0">{item.name}</h6>
                 <small class="text-secondary">{formatDate(item.created_at)}</small>
             </div>
         </div>
-        <p class="card-text fw-light">{item.domanda}</p>
+        <p class="card-text fw-light">{item.question}</p>
     </div>
 </div>

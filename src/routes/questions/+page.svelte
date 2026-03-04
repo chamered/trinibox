@@ -23,7 +23,7 @@
     </div>
     
     <div class="row g-3 h-100">
-        {#each data.domande as item}
+        {#each data.questions as item}
             <div class="col-12">
                 <QuestionCard item={item}/>
             </div>
