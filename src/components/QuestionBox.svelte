@@ -1,23 +1,11 @@
 <script>
     import Icon from "@iconify/svelte";
     import { enhance } from "$app/forms";
+    import { useValidation } from "../lib/utils.svelte.js";
 
     let { form } = $props();
 
-    let validate = $state(false);
-    const handleSubmit = ({ cancel, formElement }) => {
-        validate = true;
-
-        if (!formElement.checkValidity()) {
-            cancel();
-            return;
-        }
-
-        return async ({ update }) => {
-            await update();
-            validate = false;
-        }
-    };
+    const validator = useValidation();
 </script>
 
 <div class="card border-custom bg-custom border-2 shadow-lg mx-3" style="width: 450px;">
@@ -31,7 +19,7 @@
             Hai dubbi o curiosità sulla religione cattolica?
             Fai una question e ti risponderemo nel podcast!
         </p>
-        <form class:was-validated={validate} method="POST" use:enhance={handleSubmit} novalidate>
+        <form class:was-validated={validator.isActive} method="POST" use:enhance={validator.serverSubmit} novalidate>
             <div>
                 <label for="name" class="mb-1">Nome <small class="fw-lighter fst-italic"> (Opzionale)</small></label>
                 <input type="text" name="name" class="form-control input" placeholder="Inserisci il tuo nome">

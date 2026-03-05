@@ -1,4 +1,5 @@
 <script>
+    import { setupProfileIcon } from "../lib/utils.svelte.js";
     let { name } = $props();
 
     function randomBgColor() {
@@ -10,20 +11,6 @@
         const l = Math.floor(Math.random() * 20) + 40;
 
         return `hsl(${h}, ${s}%, ${l}%)`;
-    }
-
-    function setupProfileIcon(name) {
-        const NAMES = name.split(" ");
-        let result = "";
-
-        let length = 0;
-        NAMES.forEach((element) => {
-            if (length >= 2) return result;
-            result += element.charAt(0);
-            length++;
-        });
-
-        return result;
     }
 </script>
 

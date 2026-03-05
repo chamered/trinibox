@@ -3,7 +3,7 @@
 	import 'bootstrap/dist/css/bootstrap.min.css';
 	import { onMount } from 'svelte';
 	import '../app.css';
-
+			
 	onMount(async () => {
 		await import('bootstrap/dist/js/bootstrap.bundle.min.js');
 	});

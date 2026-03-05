@@ -53,7 +53,6 @@ body::before {
     color: white;
     background-color: #370717;
     border: 2px solid #621322;
-    transition: all 0.3s ease;
 }
 
 /* Placeholder text inside the empty input */
