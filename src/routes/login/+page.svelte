@@ -66,7 +66,7 @@
 <div class="d-flex justify-content-center align-items-center min-vh-100">
     <div class="col-10 col-sm-6 col-md-4 col-lg-3">
         <div class="text-white d-flex flex-column align-items-center mb-3">
-            <a href="/"><img src="src/lib/assets/trinitalk-word-logo.png" alt="TriniTalk Logo" style="width: 150px;"></a>
+            <a href="/"><img src="./lib/assets/trinitalk-word-logo.png" alt="TriniTalk Logo" style="width: 150px;"></a>
             <p class="fw-light m-0 mt-1">{isLogin ? 'Bentornato!' : 'Crea il tuo account'}</p>
         </div>
 
