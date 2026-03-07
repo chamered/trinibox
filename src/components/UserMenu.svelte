@@ -1,28 +1,12 @@
 <script>
     import Icon from "@iconify/svelte";
     import { supabase } from "$lib/supabaseClient.js";
-    import { setupProfileIcon } from "../lib/utils.svelte.js";
+    import { setupProfileIcon, useAuth } from "../lib/utils.svelte.js";
     
-    // Derived variable which will be updated when the user logs in or out
-    let user = $state(null);
+    const auth = useAuth();
+    let user = $derived(auth.user);
     // Dervied variable which extracts the name from the user metadata
     let name = $derived(user?.user_metadata?.name ?? "User");
-
-    // Effect which will be called when the component is mounted
-    $effect(() => {
-        // Check if there is already a logged in user
-        supabase.auth.getSession().then(({ data }) => {
-            user = data.session?.user ?? null;
-        });
-
-        // Listen for auth state changes
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-            user = session?.user ?? null;
-        });
-
-        // Cleanup function
-        return () => subscription.unsubscribe();
-    })
 
     async function handleLogout() {
         // User will be automatically be null due to the auth state change listener

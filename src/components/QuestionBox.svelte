@@ -1,11 +1,22 @@
 <script>
     import Icon from "@iconify/svelte";
     import { enhance } from "$app/forms";
-    import { useValidation } from "../lib/utils.svelte.js";
+    import { useValidation, useAuth } from "../lib/utils.svelte.js";
 
     let { form } = $props();
 
     const validator = useValidation();
+    const auth = useAuth();
+    let userName = $state("");
+
+    $effect(() => {
+        const user = auth.user;
+        if (user?.user_metadata?.name && !userName) {
+            userName = user.user_metadata.name;
+        } else if (!user) {
+            userName = "";
+        }
+    });
 </script>
 
 <div class="card border-custom bg-custom border-2 shadow-lg mx-3" style="width: 450px;">
@@ -22,7 +33,7 @@
         <form class:was-validated={validator.isActive} method="POST" use:enhance={validator.serverSubmit} novalidate>
             <div>
                 <label for="name" class="mb-1">Nome <small class="fw-lighter fst-italic"> (Opzionale)</small></label>
-                <input type="text" name="name" class="form-control input" placeholder="Inserisci il tuo nome">
+                <input type="text" name="name" bind:value={userName} class="form-control input" placeholder="Inserisci il tuo nome">
             </div>
             <div class="my-3">
                 <label for="question" class="mb-1">Domanda</label>
