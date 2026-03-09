@@ -1,8 +1,11 @@
 <script>
+    import Icon from "@iconify/svelte";
     import ProfileIcon from "./ProfileIcon.svelte";
 
-    let { item } = $props();
+    let { item, index, currentUser, onToggleUpvote } = $props();
 
+    let hasUpvoted = $derived(currentUser && item.upvotes?.some(v => v.user_id === currentUser.id));
+    
     function formatDate(date) {
         const creationDate = new Date(date)
         const today = new Date()
@@ -35,6 +38,15 @@
                 <small class="text-secondary">{formatDate(item.created_at)}</small>
             </div>
         </div>
-        <p class="card-text fw-light">{item.question}</p>
+        <p class="card-text fw-light m-0 mb-2">{item.question}</p>
+        <!-- svelte-ignore a11y_click_events_have_key_events -->
+        <!-- svelte-ignore a11y_no_static_element_interactions -->
+        <div 
+            class="d-flex align-items-center gap-1" 
+            style="cursor: pointer; width: fit-content;"
+            onclick={onToggleUpvote}>
+            <Icon class="upvotes {hasUpvoted ? 'upvotes-clicked' : ''}" icon="uil:arrow-up" width="22" height="22" />
+            {item.upvotes?.length || 0}
+        </div>
     </div>
 </div>

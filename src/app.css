@@ -165,3 +165,17 @@ body::before {
 .text-custom-2 {
     color: #ED4503;
 }
+
+.upvotes {
+    color: #6c757d;
+    transition: color 0.2s ease-in-out;
+}
+
+.upvotes:not(.upvotes-clicked):hover {
+    color: white;
+    cursor: pointer;
+}
+
+.upvotes-clicked {
+    color: #ED4503;
+}
