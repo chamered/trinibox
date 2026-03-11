@@ -6,8 +6,10 @@
     
     let { data } = $props();
 
+    // Track the currently logged-in user
     let currentUser = $state(null);
 
+    // Fetch initial user session and listen for any authentication state changes (login/logout)
     $effect(() => {
         supabase.auth.getSession().then(({ data }) => {
             currentUser = data.session?.user ?? null;
@@ -19,7 +21,10 @@
     });
 
     let questions = $state(data.questions);
+
+    // Handle upvoting or removing an upvote from a question
     async function toggleUpvote(questionIndex, questionId) {
+        // Requires authentication to vote
         if (!currentUser) {
             alert("Devi accedere per poter votare una domanda!");
             goto('/login');
@@ -30,12 +35,14 @@
         const hasUpvoted = question.upvotes.some(v => v.user_id === currentUser.id);
 
         if(hasUpvoted) {
+            // Remove upvote optimistically for instant UI feedback, then delete from database
             questions[questionIndex].upvotes = question.upvotes.filter(v => v.user_id !== currentUser.id);
             
             await supabase.from('upvotes')
                 .delete()
                 .match({ question_id: questionId, user_id: currentUser.id });
         } else {
+            // Add upvote optimistically for instant UI feedback, then insert into database
             questions[questionIndex].upvotes.push({ user_id: currentUser.id });
 
             await supabase.from('upvotes')

@@ -7,17 +7,23 @@
 
     const validator = useValidation();
     const auth = useAuth();
+    
+    // State variables for pre-filling the user's name
     let userName = $state("");
     let lastUserId = $state(null);
 
+    // Watch for authentication changes and automatically fill the name input
+    // if a user logs in, or clear it if they log out
     $effect(() => {
         const user = auth.user;
         if (user) {
+            // Only update the name if the user has changed to avoid overwriting user edits
             if (user.id !== lastUserId) {
                 userName = user.user_metadata?.name ?? "";
                 lastUserId = user.id;
             }
         } else {
+            // Clear the input and reset tracked user ID on logout
             userName = "";
             lastUserId = null;
         }

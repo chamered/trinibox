@@ -4,8 +4,11 @@
 
     let { item, index, currentUser, onToggleUpvote } = $props();
 
+    // Determine if the current user has upvoted this specific question
     let hasUpvoted = $derived(currentUser && item.upvotes?.some(v => v.user_id === currentUser.id));
     
+    // Calculate and format the time elapsed since the question was created.
+    // Returns relative time for recent dates, or absolute date for older questions.
     function formatDate(date) {
         const creationDate = new Date(date)
         const today = new Date()
