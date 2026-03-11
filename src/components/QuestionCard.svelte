@@ -6,6 +6,16 @@
 
     // Determine if the current user has upvoted this specific question
     let hasUpvoted = $derived(currentUser && item.upvotes?.some(v => v.user_id === currentUser.id));
+
+    let isAnimating = $state(false);
+
+    function handleUpvote() {
+        onToggleUpvote();
+        isAnimating = true;
+        setTimeout(() => {
+            isAnimating = false;
+        }, 300);
+    }
     
     // Calculate and format the time elapsed since the question was created.
     // Returns relative time for recent dates, or absolute date for older questions.
@@ -41,15 +51,26 @@
                 <small class="text-secondary">{formatDate(item.created_at)}</small>
             </div>
         </div>
-        <p class="card-text fw-light m-0 mb-2">{item.question}</p>
+        <p class="card-text fw-light m-0 mb-3">{item.question}</p>
         <!-- svelte-ignore a11y_click_events_have_key_events -->
         <!-- svelte-ignore a11y_no_static_element_interactions -->
-        <div 
-            class="d-flex align-items-center gap-1" 
-            style="cursor: pointer; width: fit-content;"
-            onclick={onToggleUpvote}>
-            <Icon class="upvotes {hasUpvoted ? 'upvotes-clicked' : ''}" icon="uil:arrow-up" width="22" height="22" />
+        <button 
+            class="btn btn-outline-custom rounded-pill fw-bold d-flex justify-content-center align-items-center gap-1 {isAnimating ? 'animate-pop' : ''}"
+            style="min-width: 60px;"
+            onclick={handleUpvote}>
+            <Icon class="me-1" icon={hasUpvoted ? 'iconamoon:like-fill' : 'iconamoon:like'} width="18" height="18" />
             {item.upvotes?.length || 0}
-        </div>
+        </button>
     </div>
 </div>
+
+<style>
+    @keyframes pop {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+    }
+    :global(.animate-pop) {
+        animation: pop 0.3s ease-in-out;
+    }
+</style>
