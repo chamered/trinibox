@@ -4,7 +4,8 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import '../app.css';
-	import Navbar from '../components/Navbar.svelte';	
+	import Navbar from '../components/Navbar.svelte';
+	import CookieBanner from '../components/CookieBanner.svelte';	
 			
 	onMount(async () => {
 		await import('bootstrap/dist/js/bootstrap.bundle.min.js');
@@ -21,3 +22,4 @@
 	<Navbar />
 {/if}
 {@render children()}
+<CookieBanner />
