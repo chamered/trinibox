@@ -39,6 +39,6 @@
         <h4 class="text-warning mt-4 mb-3">6. Modifiche ai Termini</h4>
         <p>Potremmo aggiornare queste regole in futuro. Se faremo cambiamenti importanti, cercheremo di avvisarti, ma ti invitiamo a controllare questa pagina periodicamente.</p>
         
-        <p class="mt-4">Per qualsiasi dubbio su questi termini, puoi scriverci a: <strong>trinitalk@gmail.com</strong>.</p>
+        <p class="mt-4">Per qualsiasi dubbio su questi termini, puoi scriverci a: <strong>trinitalkofficial@gmail.com</strong>.</p>
     </div>
 </div>

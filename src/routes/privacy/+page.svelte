@@ -7,7 +7,7 @@
         <p>Benvenuto su <strong>TriniTalk</strong>. La tua privacy è importante per noi e vogliamo essere trasparenti su come gestiamo i tuoi dati quando utilizzi il nostro sito web e il nostro TriniBox.</p>
 
         <h4 class="text-warning mt-4 mb-3">1. Chi siamo (Il Titolare del Trattamento)</h4>
-        <p>Il titolare del trattamento dei dati è <strong>[Inserisci il tuo Nome e Cognome o dell'Associazione]</strong>, creatore del podcast TriniTalk. Puoi contattarci per qualsiasi questione relativa alla privacy scrivendo a: <strong>trinitalk@gmail.com</strong>.</p>
+        <p>Il titolare del trattamento dei dati è <strong>Trinitalk</strong>, creatore del podcast TriniTalk. Puoi contattarci per qualsiasi questione relativa alla privacy scrivendo a: <strong>trinitalkofficial@gmail.com</strong>.</p>
 
         <h4 class="text-warning mt-4 mb-3">2. Quali dati raccogliamo?</h4>
         <p>Raccogliamo solo i dati strettamente necessari per farti interagire con la nostra piattaforma:</p>
