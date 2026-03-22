@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Icon from "@iconify/svelte";
     import ProfileIcon from "./ProfileIcon.svelte";
 
@@ -17,28 +17,50 @@
         }, 300);
     }
     
+    // Types for date formatting
+    type Unit = {
+        limit: number;
+        seconds: number;
+        singular: SingularDateType;
+        plural: PluralDateType;
+    }
+    type SingularDateType = "secondo" | "minuto" | "ora" | "giorno";
+    type PluralDateType = "secondi" | "minuti" | "ore" | "giorni";
+
     // Calculate and format the time elapsed since the question was created.
     // Returns relative time for recent dates, or absolute date for older questions.
-    function formatDate(date) {
-        const creationDate = new Date(date)
-        const today = new Date()
-        const secondsPassed = Math.floor((today - creationDate) / 1000);
-        
-        const minutes = Math.floor(secondsPassed / 60);
-        const hours = Math.floor(minutes / 60);
-        const days = Math.floor(hours / 24);
+    function formatDate(date: string | number | Date): string {
+        const creationDate = new Date(date);
+        const now = new Date();
 
-        if (secondsPassed < 60) {
-            return "Pochi secondi fa";
-        } else if (minutes < 60) {
-            return `${minutes} minut${minutes === 1 ? 'o' : 'i'} fa`;
-        } else if (hours < 24) {
-            return `${hours} or${hours === 1 ? 'a' : 'e'} fa`;
-        } else if (days < 7) {
-            return `${days} giorn${days === 1 ? 'o' : 'i'} fa`;
-        } else {
-            return creationDate.toLocaleDateString('it-IT');
+        const diffSeconds = Math.floor(
+            (now.getTime() - creationDate.getTime()) / 1_000
+        );
+        if (diffSeconds < 60) return "Pochi secondi fa";
+
+        const units: Unit[] = [
+            { limit: 60, seconds: 60, singular: "minuto", plural: "minuti" },
+            { limit: 24, seconds: 3_600, singular: "ora", plural: "ore" },
+            { limit: 7, seconds: 86_400, singular: "giorno", plural: "giorni" }
+        ]
+
+        for (const unit of units) {
+            const value = Math.floor(diffSeconds / unit.seconds);
+
+            if (value < unit.limit) {
+                return `${value} ${pluralize(value, unit.singular, unit.plural)} fa`;
+            }
         }
+        return creationDate.toLocaleDateString("it-IT");
+    }
+
+    // Pluralize the given value based on the singular and plural forms
+    function pluralize(
+        value: number,
+        singular: SingularDateType,
+        plural: PluralDateType
+    ): SingularDateType | PluralDateType {
+        return value === 1 ? singular : plural;
     }
 </script>
 
