@@ -31,7 +31,7 @@
                             <ProfileIcon name={item.name}/>
                             <div class="d-flex flex-column">
                                 <h6 class="card-title m-0">{item.name}</h6>
-                                <small class="text-secondary">{item.created_at.substring(0, 10)}</small>
+                                <small class="text-secondary">{new Date(item.created_at).toLocaleDateString('it-IT')}</small>
                             </div>
                         </div>
                         <p class="card-text fw-light m-0 mb-2">{item.question}</p>
