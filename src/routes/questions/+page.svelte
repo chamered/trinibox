@@ -77,6 +77,10 @@
                 <option value="likes">Più Piaciute</option>
                 <option value="recent">Più Recenti</option>
             </select>
+            <!--<a class="btn btn-success d-flex justify-content-center align-items-center gap-1 text-nowrap" href="/answered">
+                <Icon icon="icon-park-outline:check-one" width="18" height="18" />
+                Domande Risposte
+            </a>-->
             <a class="btn btn-custom d-flex justify-content-center align-items-center gap-1 text-nowrap" href="/">
                 <Icon icon="icon-park-outline:write" width="18" height="18" />
                 Fai una Domanda

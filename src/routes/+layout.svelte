@@ -19,11 +19,16 @@
 	<link rel="icon" href={favicon} />
 </svelte:head> -->
 
-{#if $page.url.pathname !== '/login'}
-	<Navbar />
-{/if}
-{@render children()}
+<div class="d-flex flex-column min-vh-100">
+	{#if $page.url.pathname !== '/login'}
+		<Navbar />
+	{/if}
 
-<Footer />
+	<main class="flex-grow-1">
+		{@render children()}
+	</main>
+
+	<Footer />
+</div>
 
 <CookieBanner />
