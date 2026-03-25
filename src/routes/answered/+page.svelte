@@ -2,7 +2,7 @@
     import Icon from '@iconify/svelte';
     import ProfileIcon from '../../components/ProfileIcon.svelte';
     let { data } = $props();
-    let questions = $state(data.answeredQuestions);
+    let questions = $derived(data.answeredQuestions);
 </script>
 <svelte:head>
 	<title>TriniBox - Risposte</title>

@@ -2,7 +2,7 @@
     import UserMenu from "./UserMenu.svelte";
     import logo from "$lib/assets/trinitalk-word-logo.png";
 
-    let isMenuOpen = false;
+    let isMenuOpen = $state(false);
 
     function toggleMenu() {
         isMenuOpen = !isMenuOpen;

@@ -7,9 +7,14 @@
 	import Navbar from '../components/Navbar.svelte';
 	import Footer from '../components/Footer.svelte';
 	import CookieBanner from '../components/CookieBanner.svelte';	
+	import { initAuth } from '$lib/utils.svelte.js';
 			
 	onMount(async () => {
 		await import('bootstrap/dist/js/bootstrap.bundle.min.js');
+	});
+
+	$effect(() => {
+		return initAuth();
 	});
 
 	let { children } = $props();

@@ -1,23 +1,31 @@
 import { supabase } from "$lib/supabaseClient.js";
 
-export function useAuth() {
-    let user = $state(null);
+// Global singleton auth state
+let user = $state(null);
 
-    $effect(() => {
-        // Check if there is already a logged in user
-        supabase.auth.getSession().then(({ data }) => {
-            user = data.session?.user ?? null;
-        });
-
-        // Listen for auth state changes
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-            user = session?.user ?? null;
-        });
-
-        // Cleanup function
-        return () => subscription.unsubscribe();
+/**
+ * Initializes the global authentication listener.
+ * This should only be called once, typically in +layout.svelte.
+ */
+export function initAuth() {
+    // Check if there is already a logged in user
+    supabase.auth.getSession().then(({ data }) => {
+        user = data.session?.user ?? null;
     });
 
+    // Listen for auth state changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+        user = session?.user ?? null;
+    });
+
+    // Return cleanup function
+    return () => subscription.unsubscribe();
+}
+
+/**
+ * Returns the global authenticated user state.
+ */
+export function getAuth() {
     return {
         get user() { return user; }
     };

@@ -1,12 +1,12 @@
 <script>
     import Icon from "@iconify/svelte";
     import { enhance } from "$app/forms";
-    import { useValidation, useAuth } from "../lib/utils.svelte.js";
+    import { useValidation, getAuth } from "../lib/utils.svelte.js";
 
     let { form } = $props();
 
     const validator = useValidation();
-    const auth = useAuth();
+    const auth = getAuth();
     
     // State variables for pre-filling the user's name
     let userName = $state("");

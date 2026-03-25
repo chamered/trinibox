@@ -7,18 +7,19 @@
 
     const validator = useValidation();
     
-    let isLogin = true // true = login, false = registration
+    let isLogin = $state(true); // true = login, false = registration
 
     // Form data
-    let email = "";
-    let password = "";
-    let name = "";
+    let email = $state("");
+    let password = $state("");
+    let name = $state("");
 
     // Error handling
-    let errorMessage = "";
-    let isLoading = false;
+    let errorMessage = $state("");
+    let isLoading = $state(false);
     
     async function handleSubmit(event) {
+        event.preventDefault();
         // Client-side validation
         if (!validator.clientSubmit(event.target)) {
             return;
@@ -78,7 +79,7 @@
             </div>
         {/if}
 
-        <form on:submit|preventDefault={handleSubmit} class:was-validated={validator.isActive} class="text-white" novalidate>
+        <form onsubmit={handleSubmit} class:was-validated={validator.isActive} class="text-white" novalidate>
             <div class="row gy-2">
                 {#if !isLogin}
                 <div class="col-12">
@@ -116,7 +117,7 @@
         </form>
         <p class="text-white text-center fw-light mt-4">
             {isLogin ? 'Non hai un account?' : 'Hai già un account?'}
-            <a href="/login" class="text-custom-2" on:click={() => { isLogin = !isLogin; errorMessage = ""; }}>{isLogin ? 'Registrati' : 'Accedi'}</a>
+            <a href="/login" class="text-custom-2" onclick={(e) => { e.preventDefault(); isLogin = !isLogin; errorMessage = ""; }}>{isLogin ? 'Registrati' : 'Accedi'}</a>
         </p>
     </div>
 </div>

@@ -3,22 +3,13 @@
     import QuestionCard from '../../components/QuestionCard.svelte';
     import { supabase } from "$lib/supabaseClient";
     import { goto } from "$app/navigation";
+    import { getAuth } from "$lib/utils.svelte.js";
     
     let { data } = $props();
 
-    // Track the currently logged-in user
-    let currentUser = $state(null);
-
-    // Fetch initial user session and listen for any authentication state changes (login/logout)
-    $effect(() => {
-        supabase.auth.getSession().then(({ data }) => {
-            currentUser = data.session?.user ?? null;
-        });
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
-            currentUser = session?.user ?? null;
-        });
-        return () => subscription.unsubscribe();
-    });
+    // Reference the globally synchronized auth state
+    const auth = getAuth();
+    let currentUser = $derived(auth.user);
 
     let questions = $state(data.questions);
     let sortBy = $state('likes');
@@ -31,7 +22,14 @@
         }
     }));
 
-    // Handle upvoting or removing an upvote from a question
+    /**
+     * Handles upvoting or removing an upvote from a question.
+     * Includes optimistic UI updates for instant feedback before verifying
+     * the transaction with the Supabase database.
+     * 
+     * @param {number} questionId - The ID of the question to toggle upvote on.
+     * @returns {Promise<void>}
+     */
     async function toggleUpvote(questionId) {
         // Requires authentication to vote
         if (!currentUser) {

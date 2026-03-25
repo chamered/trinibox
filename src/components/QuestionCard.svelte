@@ -5,7 +5,7 @@
     let { item, index, currentUser, onToggleUpvote } = $props();
 
     // Determine if the current user has upvoted this specific question
-    let hasUpvoted = $derived(currentUser && item.upvotes?.some(v => v.user_id === currentUser.id));
+    let hasUpvoted = $derived(currentUser && item.upvotes?.some((v: any) => v.user_id === currentUser.id));
 
     let isAnimating = $state(false);
 
@@ -27,8 +27,14 @@
     type SingularDateType = "secondo" | "minuto" | "ora" | "giorno";
     type PluralDateType = "secondi" | "minuti" | "ore" | "giorni";
 
-    // Calculate and format the time elapsed since the question was created.
-    // Returns relative time for recent dates, or absolute date for older questions.
+    /**
+     * Calculates and formats the time elapsed since the question was created.
+     * Returns a relative time string for recent dates, or an absolute localized 
+     * date string for older questions.
+     * 
+     * @param {string | number | Date} date - The creation date of the question.
+     * @returns {string} The formatted relative or absolute date string.
+     */
     function formatDate(date: string | number | Date): string {
         const creationDate = new Date(date);
         const now = new Date();
@@ -54,7 +60,14 @@
         return creationDate.toLocaleDateString("it-IT");
     }
 
-    // Pluralize the given value based on the singular and plural forms
+    /**
+     * Pluralizes a given time unit string based on its value.
+     * 
+     * @param {number} value - The numerical value determining pluralization.
+     * @param {SingularDateType} singular - The singular form of the word.
+     * @param {PluralDateType} plural - The plural form of the word.
+     * @returns {SingularDateType | PluralDateType} The correct word form.
+     */
     function pluralize(
         value: number,
         singular: SingularDateType,

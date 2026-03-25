@@ -1,19 +1,19 @@
 <script>
     import Icon from "@iconify/svelte";
     import { supabase } from "$lib/supabaseClient.js";
-    import { setupProfileIcon, useAuth } from "../lib/utils.svelte.js";
-    import { createEventDispatcher } from 'svelte';
+    import { setupProfileIcon, getAuth } from "../lib/utils.svelte.js";
     
-    const dispatch = createEventDispatcher();
-    const auth = useAuth();
+    let { onclick } = $props();
+
+    const auth = getAuth();
     let user = $derived(auth.user);
-    // Dervied variable which extracts the name from the user metadata
+    // Derived variable which extracts the name from the user metadata
     let name = $derived(user?.user_metadata?.name ?? "User");
 
     async function handleLogout() {
         // User will be automatically be null due to the auth state change listener
         await supabase.auth.signOut();
-        dispatch('click');
+        if (onclick) onclick();
     }
 </script>
 
@@ -42,6 +42,6 @@
 </div>
 {:else}
 <div class="">
-    <a href="/login" class="btn btn-custom" onclick={() => dispatch('click')}>Accedi</a>
+    <a href="/login" class="btn btn-custom" onclick={onclick}>Accedi</a>
 </div>
 {/if}
