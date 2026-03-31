@@ -88,9 +88,9 @@
         </div>
         <p class="card-text fw-light m-0 mb-3">{item.question}</p>
         {#if item.episode_url}
-            <p class="fw-light d-flex align-items-center gap-1 m-0 mb-3">
+            <p class="fw-light d-flex align-items-center gap-1 m-0 ms-3">
                 <Icon icon="mdi:play-circle" width="18" height="18" />
-                Trovi la risposta a questa domanda <a class="text-custom text-decoration-none ms-1" href={item.episode_url}>QUI</a>
+                Trovi la risposta a questa domanda <a class="text-custom text-decoration-none" href={item.episode_url}>&rarr; QUI &larr;</a>
             </p>
         {/if}
         {#if !item.episode_url}
