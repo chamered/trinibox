@@ -86,12 +86,14 @@
                 <small class="text-secondary">{formatDate(item.created_at)}</small>
             </div>
         </div>
-        <p class="card-text fw-light m-0 mb-3">{item.question}</p>
+        <p class="card-text fw-light m-0 mb-3 text-break">{item.question}</p>
         {#if item.episode_url}
-            <p class="fw-light d-flex align-items-center gap-1 m-0 ms-3">
-                <Icon icon="mdi:play-circle" width="18" height="18" />
-                Trovi la risposta a questa domanda <a class="text-custom text-decoration-none" href={item.episode_url}>&rarr; QUI &larr;</a>
-            </p>
+            <div class="d-flex align-items-start gap-1 m-0 ms-2">
+                <Icon class="mt-1 flex-shrink-0" icon="mdi:play-circle" width="18" height="18" />
+                <p class="fw-light m-0 text-break">
+                    Trovi la risposta a questa domanda <a class="text-custom text-decoration-none text-nowrap" href={item.episode_url}>&rarr; QUI &larr;</a>
+                </p>
+            </div>
         {/if}
         {#if !item.episode_url}
             <button 
